@@ -1,0 +1,9 @@
+http://localhost:8085/catalog/getproducts
+
+
+microservice
+https://youtu.be/DgVjEo3OGBI?t=4566
+https://youtu.be/DgVjEo3OGBI?t=8183  inizio docker
+https://youtu.be/DgVjEo3OGBI?t=9958  inizio kubernetics
+https://youtu.be/DgVjEo3OGBI?t=11923 inizio node port
+https://youtu.be/DgVjEo3OGBI?t=12302 inizio CommandService

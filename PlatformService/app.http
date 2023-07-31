@@ -32,3 +32,15 @@ charset=utf-8
   "publisher": "Rabbit Inc",
   "cost": "Free"
 }
+
+### la porta 31620 è definita dal Service di Kubernetes
+### per trovare la porta: kubectl get services
+### get platfor from k8s
+GET http://localhost:31620/api/Platform
+content-type: application/json
+charset=utf-8 
+
+### get 1
+GET http://localhost:31620/api/Platform/1
+content-type: application/json
+charset=utf-8 
