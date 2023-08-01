@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PlatformService.Data;
 using PlatformService.Dtos;
 using PlatformService.Models;
+using PlatformService.SyncDataServices.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace PlatformService.Controllers
@@ -14,11 +15,15 @@ namespace PlatformService.Controllers
     {
         private readonly IPlatformRepo _repo;
         private readonly IMapper _mapper;
+        private readonly ICommandDataClient _commandDataClient;
+        private readonly ILogger<PlatformController> _logger;
 
-        public PlatformController(IPlatformRepo repo, IMapper mapper)
+        public PlatformController(IPlatformRepo repo, IMapper mapper, ICommandDataClient commandDataClient, ILogger<PlatformController> logger)
         {
             _repo = repo;
             _mapper = mapper;
+            _commandDataClient = commandDataClient;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -32,7 +37,7 @@ namespace PlatformService.Controllers
             return Ok(_mapper.Map<IEnumerable<PlatformDto>>(platforms));
         }
 
-        [HttpGet("{id}", Name = "GetPlatformById")]
+        [HttpGet("{id}", Name = "GetPlatformByIdAsync")]
         public async Task<ActionResult<PlatformDto>> GetPlatformByIdAsync(int id)
         {
             var platform = await _repo.GetPlatfomByIdAsync(id);
@@ -54,6 +59,16 @@ namespace PlatformService.Controllers
             await _repo.SaveChangesAsync();
 
             var platformReturn = _mapper.Map<PlatformDto>(platformModel);
+
+            try
+            {
+                await _commandDataClient.SendPlatformToCommando(platformReturn);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error sync calling CommandService: { ex.Message }");
+            }
+
             return CreatedAtRoute(nameof(GetPlatformByIdAsync), new { Id = platformReturn.Id }, platformReturn);
         }
 
@@ -83,5 +98,7 @@ namespace PlatformService.Controllers
 
             return Ok();
         }
+
+
     }
 }

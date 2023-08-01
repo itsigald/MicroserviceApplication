@@ -7,3 +7,9 @@ https://youtu.be/DgVjEo3OGBI?t=8183  inizio docker
 https://youtu.be/DgVjEo3OGBI?t=9958  inizio kubernetics
 https://youtu.be/DgVjEo3OGBI?t=11923 inizio node port
 https://youtu.be/DgVjEo3OGBI?t=12302 inizio CommandService
+https://youtu.be/DgVjEo3OGBI?t=13326 inizio messegging
+https://youtu.be/DgVjEo3OGBI?t=14129 modifica PlatformService x aggiungere il client per richiesteverso il CommandService
+https://youtu.be/DgVjEo3OGBI?t=15030 continuazione costruzione sync client
+https://youtu.be/DgVjEo3OGBI?t=15505 fine costruzione sync client
+
+ ame non funziona 0> rivedere
