@@ -11,5 +11,4 @@ https://youtu.be/DgVjEo3OGBI?t=13326 inizio messegging
 https://youtu.be/DgVjEo3OGBI?t=14129 modifica PlatformService x aggiungere il client per richiesteverso il CommandService
 https://youtu.be/DgVjEo3OGBI?t=15030 continuazione costruzione sync client
 https://youtu.be/DgVjEo3OGBI?t=15505 fine costruzione sync client
-
- ame non funziona 0> rivedere
+https://youtu.be/DgVjEo3OGBI?t=15576 inizio integrazioen command service su kubernetics
