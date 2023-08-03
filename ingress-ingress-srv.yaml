@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"kubernetes.io/ingress.class":"nginx","nginx.ingress.kubernetes.io/use-regex":"true"},"name":"ingress-srv","namespace":"default"},"spec":{"rules":[{"host":"acme.com","http":{"paths":[{"backend":{"service":{"name":"platforms-clusterip-srv","port":{"number":80}}},"path":"/api/platform","pathType":"Prefix"},{"backend":{"service":{"name":"commands-clusterip-srv","port":{"number":80}}},"path":"/api/c/platforms","pathType":"Prefix"}]}}]}}
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+  creationTimestamp: "2023-08-03T13:20:47Z"
+  generation: 3
+  name: ingress-srv
+  namespace: default
+  resourceVersion: "93933"
+  uid: 3b4ad8ab-6a43-4c08-b7ef-a18947d5a049
+spec:
+  rules:
+  - host: acme.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: platforms-clusterip-srv
+            port:
+              number: 80
+        path: /api/platform
+        pathType: Prefix
+      - backend:
+          service:
+            name: commands-clusterip-srv
+            port:
+              number: 80
+        path: /api/c/platforms
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - hostname: localhost

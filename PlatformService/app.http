@@ -62,3 +62,31 @@ content-type: application/json
 charset=utf-8
 {
 }
+
+### usando K8s come load balancer
+GET http://acme.com/api/platform
+content-type: application/json
+charset=utf-8 
+
+
+### usando K8s come load balancer
+GET http://acme.com/api/platform/7
+content-type: application/json
+charset=utf-8 
+
+
+### post to k8s enviroments
+POST http://acme.com/api/platform
+content-type: application/json
+charset=utf-8 
+
+{
+  "name": "Apache",
+  "publisher": "Apache Foundation",
+  "cost": "Free"
+}
+
+### post to k8s enviroments
+POST http://acme.com/api/c/Platforms
+content-type: application/json
+charset=utf-8 

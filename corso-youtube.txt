@@ -15,3 +15,4 @@ https://youtu.be/DgVjEo3OGBI?t=15576 inizio integrazioen command service su kube
 https://youtu.be/DgVjEo3OGBI?t=16443
 https://youtu.be/DgVjEo3OGBI?t=16825 end k8s config
 https://youtu.be/DgVjEo3OGBI?t=17050 warning on redirect without https
+https://youtu.be/DgVjEo3OGBI?t=18238 config kubernetes ingress
