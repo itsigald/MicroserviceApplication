@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration.UserSecrets;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using PlatformService.Models;
 using Serilog;
 using Serilog.Core;
@@ -9,25 +10,40 @@ namespace PlatformService.Data
 {
     public static class DatabasePreparation
     {
-        public static void PrepPolulation(IApplicationBuilder app, Serilog.ILogger logger)
+        public static void PrepPolulation(IApplicationBuilder app, IWebHostEnvironment environment, Serilog.ILogger logger)
         {
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
-                seedData(serviceScope.ServiceProvider.GetService<PlatformDbContest>(), logger);
+                seedData(serviceScope.ServiceProvider.GetService<PlatformDbContest>(), logger, environment.IsProduction());
             }
         }
 
-        private static void seedData(PlatformDbContest? contest, Serilog.ILogger logger)
+        private static void seedData(PlatformDbContest? context, Serilog.ILogger logger, bool isProduction)
         {
-            if (contest == null)
-                throw new ArgumentNullException($"The context {nameof(contest)} is null");
+            if (context == null)
+                throw new ArgumentNullException($"The context {nameof(context)} is null");
 
-            if(!contest.Platforms.Any())
+            if(isProduction)
+            {
+                logger.Information($"--------> Apply migration...");
+
+                try
+                {
+                    context.Database.Migrate();
+                }
+                catch (Exception ex)
+                {
+                    logger.Information($"--------> Error on migration: { ex.Message}...");
+                    throw;
+                }
+            }
+
+            if(!context.Platforms.Any())
             {
                 //Console.Write("--------> Seeding data...");
                 logger.Information("--------> Seeding data...");
 
-                contest.Platforms.AddRange(
+                context.Platforms.AddRange(
                     new Platform { Name = "Dotnet", Publisher = "Microsoft", Cost = "Free" },
                     new Platform { Name = "DockerHub", Publisher = "Docker", Cost = "Free" },
                     new Platform { Name = "SqlServer", Publisher = "Microsoft", Cost = "Free" },
@@ -35,7 +51,7 @@ namespace PlatformService.Data
                     new Platform { Name = "Oracle Database", Publisher = "Oracle", Cost = "100000" }
                 );
 
-                int insertRows = contest.SaveChanges();
+                int insertRows = context.SaveChanges();
 
                 logger.Information($"--------> Seeded { insertRows } data...");
             }

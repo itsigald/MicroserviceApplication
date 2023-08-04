@@ -6,18 +6,16 @@ using PlatformService.SyncDataServices.Http;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
-
 var globalSettings = builder.Configuration.GetSection("Settings").Get<Setting>();
 
-builder.Services.AddDbContext<PlatformDbContest>(opt =>
-{
-    opt.UseInMemoryDatabase("PlatformInMemory");
-});
+globalSettings!.ConnectionString = builder.Configuration.GetConnectionString("Default") ?? string.Empty;
 
 builder.Services.AddTransient<ISettingService>(s => new SettingService(globalSettings));
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
 
 builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
+
+builder.Services.AddDbContext<PlatformDbContest>();
 
 builder.Host.UseSerilog((ctx, config) =>
 {
@@ -49,7 +47,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-DatabasePreparation.PrepPolulation(app, Log.Logger);
+DatabasePreparation.PrepPolulation(app, app.Environment, Log.Logger);
 
 Log.Logger.Information($"--> CommandService Url: {globalSettings?.CommandServiceUrl}");
 app.Run();
