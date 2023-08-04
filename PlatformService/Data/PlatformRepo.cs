@@ -6,21 +6,21 @@ namespace PlatformService.Data
 {
     public class PlatformRepo : IPlatformRepo
     {
-        private readonly PlatformDbContest _contest;
+        private readonly PlatformDbContest _context;
 
-        public PlatformRepo(PlatformDbContest contest)
+        public PlatformRepo(PlatformDbContest context)
         {
-            _contest = contest;
+            _context = context;
         }
 
         public async Task<IEnumerable<Platform>> GetAllPlatformsAsync()
         {
-            return await _contest.Platforms.ToListAsync();
+            return await _context.Platforms.ToListAsync();
         }
 
         public async Task<Platform?> GetPlatfomByIdAsync(int id)
         {
-            return await _contest.Platforms.FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Platforms.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public void AddPlatform(Platform? platform)
@@ -28,7 +28,7 @@ namespace PlatformService.Data
             if (platform == null)
                 throw new ArgumentException($"Create Platform: {nameof(platform)} is null");
 
-            _contest.Platforms.Add(platform);
+            _context.Platforms.Add(platform);
         }
 
         public void UpdatePlatform(Platform? platform)
@@ -36,7 +36,7 @@ namespace PlatformService.Data
             if (platform == null)
                 throw new ArgumentException($"Update Platform: {nameof(platform)} is null");
 
-            _contest.Platforms.Update(platform);
+            _context.Platforms.Update(platform);
         }
 
         public void DeletePlatform(Platform? platform)
@@ -44,12 +44,12 @@ namespace PlatformService.Data
             if (platform == null)
                 throw new ArgumentException($"Delete Platform: {nameof(platform)} is null");
 
-            _contest.Remove(platform);
+            _context.Remove(platform);
         }
 
         public async Task<bool> SaveChangesAsync()
         {
-            return await _contest.SaveChangesAsync() > 0;
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

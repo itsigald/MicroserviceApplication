@@ -7,7 +7,6 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 var globalSettings = builder.Configuration.GetSection("Settings").Get<Setting>();
-
 globalSettings!.ConnectionString = builder.Configuration.GetConnectionString("Default") ?? string.Empty;
 
 builder.Services.AddTransient<ISettingService>(s => new SettingService(globalSettings));

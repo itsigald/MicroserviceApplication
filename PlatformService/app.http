@@ -63,6 +63,33 @@ charset=utf-8
 {
 }
 
+### test platform controlle in COmmandService
+GET http://localhost:6001/api/c/Platforms
+content-type: application/json
+charset=utf-8 
+
+### test metodo GetCommandForPlatform del CommandController con platformId
+GET http://localhost:6001/api/c/platforms/1/Commands
+content-type: application/json
+charset=utf-8 
+
+
+### test metodo GetCommandForPlatform del CommandController con platformId e commandId
+GET http://localhost:6001/api/c/platforms/1/Commands/2
+content-type: application/json
+charset=utf-8
+
+
+### test metodo CreateCommand del CommandController con platformId 1
+POST http://localhost:6001/api/c/platforms/1/Commands
+content-type: application/json
+charset=utf-8 
+
+{
+  "HowTo": "Build a dotnet project",
+  "CommandLine": "dotnet build"
+}
+
 ### usando K8s come load balancer
 GET http://acme.com/api/platforms
 content-type: application/json
