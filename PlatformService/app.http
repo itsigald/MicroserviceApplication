@@ -64,19 +64,19 @@ charset=utf-8
 }
 
 ### usando K8s come load balancer
-GET http://acme.com/api/platform
+GET http://acme.com/api/platforms
 content-type: application/json
 charset=utf-8 
 
 
 ### usando K8s come load balancer
-GET http://acme.com/api/platform/7
+GET http://acme.com/api/platforms/2
 content-type: application/json
 charset=utf-8 
 
 
 ### post to k8s enviroments
-POST http://acme.com/api/platform
+POST http://acme.com/api/platforms
 content-type: application/json
 charset=utf-8 
 
@@ -87,6 +87,11 @@ charset=utf-8
 }
 
 ### post to k8s enviroments
-POST http://acme.com/api/c/Platforms
+POST http://acme.com/api/c/platforms
+content-type: application/json
+charset=utf-8 
+
+### usando K8s come load balancer
+GET http://acme.com/api/commands
 content-type: application/json
 charset=utf-8 

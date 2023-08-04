@@ -6,12 +6,12 @@ metadata:
       {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"kubernetes.io/ingress.class":"nginx","nginx.ingress.kubernetes.io/use-regex":"true"},"name":"ingress-srv","namespace":"default"},"spec":{"rules":[{"host":"acme.com","http":{"paths":[{"backend":{"service":{"name":"platforms-clusterip-srv","port":{"number":80}}},"path":"/api/platform","pathType":"Prefix"},{"backend":{"service":{"name":"commands-clusterip-srv","port":{"number":80}}},"path":"/api/c/platforms","pathType":"Prefix"}]}}]}}
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
-  creationTimestamp: "2023-08-03T13:20:47Z"
-  generation: 3
+  creationTimestamp: "2023-08-03T13:54:50Z"
+  generation: 1
   name: ingress-srv
   namespace: default
-  resourceVersion: "93933"
-  uid: 3b4ad8ab-6a43-4c08-b7ef-a18947d5a049
+  resourceVersion: "95280"
+  uid: 98f194a5-85cd-4095-be15-80d9bd13b55c
 spec:
   rules:
   - host: acme.com
@@ -29,7 +29,7 @@ spec:
             name: commands-clusterip-srv
             port:
               number: 80
-        path: /api/c/platforms
+        path: /api/commands
         pathType: Prefix
 status:
   loadBalancer:

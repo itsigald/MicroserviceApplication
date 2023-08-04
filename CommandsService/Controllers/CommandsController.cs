@@ -14,7 +14,7 @@ namespace CommandsService.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
+        [HttpGet()]
         public ActionResult Get()
         {
             _logger.LogInformation("Called Get Method");

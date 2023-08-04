@@ -1,0 +1,29 @@
+## costruire un immagine docker partendo da Dockerfile:
+docker build -t itsigald/platformservice .
+
+## mandare l'immagina creata versio Docker Hub
+docker push itsigald/platformservice
+
+
+### comandi kubernetes
+
+## listare deployment
+kubectl get deployment
+
+## calcellare deployment
+kubectl delete deployment <nome>
+
+## listare pods
+kubectl get pod
+
+## listare deployment con dettagli
+kubectl get deployment -o wide
+
+## calcellare pod
+kubectl delete pod <nome>
+
+## listare services
+kubectl get service
+
+## configurare deployment da file yaml
+kubeclt apply -f <configurazioni-da-file>.yaml
