@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommandsService.Migrations
 {
     [DbContext(typeof(CommandDbContest))]
-    [Migration("20230809072444_AddCommandTable")]
+    [Migration("20230809074529_AddCommandTable")]
     partial class AddCommandTable
     {
         /// <inheritdoc />
