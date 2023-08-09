@@ -58,7 +58,7 @@ namespace CommandsService.Data
         {
             return await _context.Commands
                 .Where(c => c.PlatformId == platformId)
-                .OrderBy(c => c.Platform.Name)
+                .OrderBy(c => c.Platform == null ? null : c.Platform.Name)
                 .ToListAsync();
         }
 
