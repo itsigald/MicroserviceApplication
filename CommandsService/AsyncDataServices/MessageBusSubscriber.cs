@@ -33,7 +33,7 @@ namespace CommandsService.AsyncDataServices
 
             consumer.Received += (ModuleHandle, ea) =>
             {
-                _logger.LogInformation("-->Rabbit: Event Received");
+                _logger.LogInformation("--> Rabbit: Event Received");
                 var body = ea.Body;
                 var notificationMessage = Encoding.UTF8.GetString(body.ToArray());
                 _eventProcessor.ProcessEvent(notificationMessage);

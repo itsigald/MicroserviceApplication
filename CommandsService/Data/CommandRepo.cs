@@ -62,9 +62,9 @@ namespace CommandsService.Data
                 .ToListAsync();
         }
 
-        public async Task<bool> PlatformExists(int platformId)
+        public async Task<bool> PlatformExists(int platformExternalId)
         {
-            return await _context.Platforms.AnyAsync(p => p.Id == platformId);
+            return await _context.Platforms.AnyAsync(p => p.ExternalId == platformExternalId);
         }
 
         public async Task<bool> SaveChangesAsync()

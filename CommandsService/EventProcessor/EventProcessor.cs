@@ -72,9 +72,11 @@ namespace CommandsService.EventProcessor
                     
                     if (!platformExists)
                     {
+                        platform.Id = 0;
+                        platform.Commands = null;
                         repo.CreatePlatform(platform);
                         await repo.SaveChangesAsync();
-                        _logger.LogWarning($"--> New Platoform Added: { JsonSerializer.Serialize(platform) }");
+                        _logger.LogInformation($"--> New Platoform Added: { JsonSerializer.Serialize(platform) }");
                     }
                     else
                     {
