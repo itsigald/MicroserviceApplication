@@ -1,5 +1,6 @@
-﻿using CommandsService.Modals;
+﻿using CommandsService.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace CommandsService.Data
 {
@@ -18,6 +19,8 @@ namespace CommandsService.Data
                 throw new ArgumentNullException(nameof(command));
 
             command.PlatformId = platformId;
+            command.Platform = null;
+
             _context.Commands.Add(command);
         }
 
@@ -67,6 +70,11 @@ namespace CommandsService.Data
         public async Task<bool> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> ExternalPlatformExists(int externalPlatformId)
+        {
+            return await _context.Platforms.AnyAsync(p => p.ExternalId == externalPlatformId);
         }
     }
 }

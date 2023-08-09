@@ -1,12 +1,13 @@
+using Microsoft.EntityFrameworkCore;
 using CommandsService.Data;
 using CommandsService.Dtos;
 using CommandsService.Services;
 using Serilog;
+using CommandsService.EventProcessor;
+using CommandsService.AsyncDataServices;
 
 var builder = WebApplication.CreateBuilder(args);
-
-//var globalSettings = builder.Configuration.GetSection("Settings").Get<Setting>();
-var globalSettings = new Setting();
+var globalSettings = builder.Configuration.GetSection("Settings").Get<Setting>();
 globalSettings!.ConnectionString = builder.Configuration.GetConnectionString("Default") ?? string.Empty;
 
 builder.Services.AddTransient<ISettingService>(s => new SettingService(globalSettings));
@@ -20,6 +21,9 @@ builder.Host.UseSerilog((ctx, config) =>
 });
 
 builder.Services.AddControllers();
+
+builder.Services.AddHostedService<MessageBusSubscriber>();
+builder.Services.AddSingleton<IEventProcessor, EventProcessor>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

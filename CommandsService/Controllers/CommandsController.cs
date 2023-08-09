@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CommandsService.Data;
 using CommandsService.Dtos;
-using CommandsService.Modals;
+using CommandsService.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.Design;

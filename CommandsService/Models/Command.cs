@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CommandsService.Modals
+namespace CommandsService.Models
 {
     public class Command
     {
@@ -17,6 +17,6 @@ namespace CommandsService.Modals
         [Required]
         public int PlatformId { get; set; }
         
-        public Platform Platform { get; set; } = new();
+        public Platform? Platform { get; set; } = new();
     }
 }

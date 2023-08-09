@@ -27,7 +27,7 @@ namespace CommandsService.Controllers
             _logger.LogInformation("--> Getting Platforms from CommandService");
             var platformItems = await _repo.GetAllPlatforms();
 
-            return Ok(_mapper.Map<IEnumerable<CommandDto>>(platformItems));
+            return Ok(_mapper.Map<IEnumerable<PlatformDto>>(platformItems));
         }
 
         [HttpPost]

@@ -1,4 +1,4 @@
-﻿using CommandsService.Modals;
+﻿using CommandsService.Models;
 
 namespace CommandsService.Data
 {
@@ -12,6 +12,7 @@ namespace CommandsService.Data
         void CreatePlatform(Platform platform);
 
         Task<bool> PlatformExists(int platformId);
+        Task<bool> ExternalPlatformExists(int externalPlatformId);
 
         // metodi per Commands
         Task<IEnumerable<Command>> GetCommandForPlatform(int platformId);

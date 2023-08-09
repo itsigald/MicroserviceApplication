@@ -4,5 +4,6 @@
     {
         public string CommandServiceUrl { get; set; } = string.Empty;
         public string ConnectionString { get; set; } = string.Empty;
+        public RabbitMqConfig RabbitMQ { get; set; } = new();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PlatformService.AsyncDataServices;
 using PlatformService.Data;
 using PlatformService.Dtos;
 using PlatformService.Models;
@@ -16,13 +17,15 @@ namespace PlatformService.Controllers
         private readonly IPlatformRepo _repo;
         private readonly IMapper _mapper;
         private readonly ICommandDataClient _commandDataClient;
+        private readonly IMessageBusClient _messageBus;
         private readonly ILogger<PlatformsController> _logger;
 
-        public PlatformsController(IPlatformRepo repo, IMapper mapper, ICommandDataClient commandDataClient, ILogger<PlatformsController> logger)
+        public PlatformsController(IPlatformRepo repo, IMapper mapper, ICommandDataClient commandDataClient, IMessageBusClient messageBus, ILogger<PlatformsController> logger)
         {
             _repo = repo;
             _mapper = mapper;
             _commandDataClient = commandDataClient;
+            _messageBus = messageBus;
             _logger = logger;
         }
 
@@ -60,6 +63,7 @@ namespace PlatformService.Controllers
 
             var platformReturn = _mapper.Map<PlatformDto>(platformModel);
 
+            // send sync message
             try
             {
                 await _commandDataClient.SendPlatformToCommando(platformReturn);
@@ -67,6 +71,19 @@ namespace PlatformService.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"Error sync calling CommandService: { ex.Message }");
+            }
+
+            //send async message
+            try
+            {
+                var platformPub = _mapper.Map<PlatformPubDto>(platformReturn);
+                platformPub.Event = "Platoform_Published";
+
+                _messageBus.PublishNewPlatform(platformPub);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error async calling CommandService: {ex.Message}");
             }
 
             return CreatedAtRoute(nameof(GetPlatformByIdAsync), new { Id = platformReturn.Id }, platformReturn);

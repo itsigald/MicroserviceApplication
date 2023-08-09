@@ -1,5 +1,5 @@
 ﻿using CommandsService.Dtos;
-using CommandsService.Modals;
+using CommandsService.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CommandsService.Data

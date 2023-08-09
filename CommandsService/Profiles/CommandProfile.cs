@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
+using CommandsService.Data;
 using CommandsService.Dtos;
-using CommandsService.Modals;
+using CommandsService.Models;
 
 namespace CommandsService.Profiles
 {
@@ -14,6 +15,11 @@ namespace CommandsService.Profiles
             CreateMap<Platform, PlatformDto>();
             CreateMap<CommandDto, Command>();
             CreateMap<Command, CommandDto>();
+            //
+            CreateMap<CommandCreateDto, Command>();
+            //
+            CreateMap<PlatformPubDto, Platform>()
+                .ForMember(dest => dest.ExternalId, opt => opt.MapFrom(src => src.Id));
         }
     }
 }

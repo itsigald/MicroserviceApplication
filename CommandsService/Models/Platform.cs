@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CommandsService.Modals
+namespace CommandsService.Models
 {
     public class Platform
     {

@@ -1,17 +1,17 @@
 # For more info on HTTP files go to https://aka.ms/vs/httpfile
 
 ### get all
-GET http://localhost:8086/api/Platform
+GET http://localhost:5001/api/Platforms
 content-type: application/json
 charset=utf-8 
 
 ### get 1
-GET http://localhost:8086/api/Platform/1
+GET http://localhost:5001/api/Platforms/1
 content-type: application/json
 charset=utf-8 
 
-### post new itam
-POST http://localhost:8086/api/Platform
+### post new itam 1
+POST http://localhost:5001/api/Platforms
 content-type: application/json
 charset=utf-8 
 
@@ -20,6 +20,38 @@ charset=utf-8
   "publisher": "Apache Foundation",
   "cost": "Free"
 }
+
+### test platform controlle in COmmandService
+GET http://localhost:6001/api/c/Platforms
+content-type: application/json
+charset=utf-8 
+
+### post new itam 2
+POST http://localhost:5001/api/Platforms
+content-type: application/json
+charset=utf-8 
+
+{
+  "name": "Firefox",
+  "publisher": "Firefox Inc",
+  "cost": "Free"
+}
+
+### post new itam 2
+POST http://localhost:6001/api/c/platforms/6/commands
+content-type: application/json
+charset=utf-8 
+
+{
+  "howto": "Push Docket to Hub",
+  "commandline": "docker push <test>"
+}
+
+### test platform controlle in COmmandServicev ##api/c/platforms/{platformId}/[controller]
+GET http://localhost:6001/api/c/platforms
+content-type: application/json
+charset=utf-8 
+
 
 ### put itam
 PUT http://localhost:8086/api/Platform
