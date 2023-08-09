@@ -10,7 +10,7 @@ namespace CommandsService.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            /*
+            
             migrationBuilder.CreateTable(
                 name: "Platforms",
                 columns: table => new
@@ -24,7 +24,6 @@ namespace CommandsService.Migrations
                 {
                     table.PrimaryKey("PK_Platforms", x => x.Id);
                 });
-            */
 
             migrationBuilder.CreateTable(
                 name: "Commands",
@@ -59,8 +58,8 @@ namespace CommandsService.Migrations
             migrationBuilder.DropTable(
                 name: "Commands");
 
-            //migrationBuilder.DropTable(
-            //    name: "Platforms");
+            migrationBuilder.DropTable(
+                name: "Platforms");
         }
     }
 }
