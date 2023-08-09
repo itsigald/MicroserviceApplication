@@ -129,7 +129,7 @@ charset=utf-8
 
 
 ### usando K8s come load balancer
-GET http://acme.com/api/platforms/2
+GET http://acme.com/api/platforms/1
 content-type: application/json
 charset=utf-8 
 
@@ -140,13 +140,13 @@ content-type: application/json
 charset=utf-8 
 
 {
-  "name": "Apache",
-  "publisher": "Apache Foundation",
+  "name": "Firefox",
+  "publisher": "Firefox INc",
   "cost": "Free"
 }
 
 ### post to k8s enviroments
-POST http://acme.com/api/c/platforms
+GET http://acme.com/api/c/platforms
 content-type: application/json
 charset=utf-8 
 

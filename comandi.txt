@@ -39,5 +39,5 @@ kubectl get storageclass
 ## password per sqlserver
 mssql && SA_PASSWORD="pa55wOrd"
 
-## aggiornare l'immagina
+## aggiornare l'immagine
 kubectl rollout restart deployment platforms-deployment
