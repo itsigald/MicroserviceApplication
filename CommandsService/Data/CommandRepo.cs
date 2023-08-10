@@ -6,9 +6,9 @@ namespace CommandsService.Data
 {
     public class CommandRepo : ICommandRepo
     {
-        private readonly CommandDbContest _context;
+        private readonly CommandDbContext _context;
 
-        public CommandRepo(CommandDbContest contest)
+        public CommandRepo(CommandDbContext contest)
         {
             _context = contest;
         }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CommandsService.Migrations
 {
-    [DbContext(typeof(CommandDbContest))]
+    [DbContext(typeof(CommandDbContext))]
     partial class CommandDbContestModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

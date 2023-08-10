@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CommandsService.Data
 {
-    public class CommandDbContest : DbContext
+    public class CommandDbContext : DbContext
     {
         private readonly ISettingService _settings;
         private readonly IWebHostEnvironment _env;
-        private readonly ILogger<CommandDbContest> _logger;
+        private readonly ILogger<CommandDbContext> _logger;
 
-        public CommandDbContest(DbContextOptions<CommandDbContest> opt, ISettingService setting, IWebHostEnvironment env, ILogger<CommandDbContest> logger) : base(opt)
+        public CommandDbContext(DbContextOptions<CommandDbContext> opt, ISettingService setting, IWebHostEnvironment env, ILogger<CommandDbContext> logger) : base(opt)
         {
             _settings = setting;
             _env = env;

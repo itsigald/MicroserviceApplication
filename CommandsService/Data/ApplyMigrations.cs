@@ -8,11 +8,11 @@ namespace CommandsService.Data
         {
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
-                seedData(serviceScope.ServiceProvider.GetService<CommandDbContest>(), logger, environment.IsProduction());
+                seedData(serviceScope.ServiceProvider.GetService<CommandDbContext>(), logger, environment.IsProduction());
             }
         }
 
-        private static void seedData(CommandDbContest? context, Serilog.ILogger logger, bool isProduction)
+        private static void seedData(CommandDbContext? context, Serilog.ILogger logger, bool isProduction)
         {
             if (context == null)
                 throw new ArgumentNullException($"The context {nameof(context)} is null");

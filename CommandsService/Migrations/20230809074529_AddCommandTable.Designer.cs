@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CommandsService.Migrations
 {
-    [DbContext(typeof(CommandDbContest))]
+    [DbContext(typeof(CommandDbContext))]
     [Migration("20230809074529_AddCommandTable")]
     partial class AddCommandTable
     {

@@ -21,6 +21,8 @@
 #COPY --from=publish /app/publish .
 #ENTRYPOINT ["dotnet", "CommandsService.dll"]
 
+#    mcr.microsoft.com/dotnet/sdk:7.0-alpine
+
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
 WORKDIR /app
 

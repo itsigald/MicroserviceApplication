@@ -154,3 +154,14 @@ charset=utf-8
 GET http://acme.com/api/commands
 content-type: application/json
 charset=utf-8 
+
+
+### create a new command for: api/c/platforms/{platformId}/[controller]
+POST http://acme.com/api/c/platforms/9/Commands
+content-type: application/json
+charset=utf-8 
+
+{
+  "howto": "Push Docket to Hub",
+  "commandline": "docker push <test>"
+}

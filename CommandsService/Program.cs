@@ -5,6 +5,7 @@ using CommandsService.Services;
 using Serilog;
 using CommandsService.EventProcessor;
 using CommandsService.AsyncDataServices;
+using CommandsService.SyncDataServices.Grpc;
 
 var builder = WebApplication.CreateBuilder(args);
 var globalSettings = builder.Configuration.GetSection("Settings").Get<Setting>();
@@ -12,8 +13,9 @@ globalSettings!.ConnectionString = builder.Configuration.GetConnectionString("De
 
 builder.Services.AddTransient<ISettingService>(s => new SettingService(globalSettings));
 builder.Services.AddScoped<ICommandRepo, CommandRepo>();
+builder.Services.AddScoped<IPlatformDataClient, PlatformDataClient>();
 
-builder.Services.AddDbContext<CommandDbContest>();
+builder.Services.AddDbContext<CommandDbContext>();
 
 builder.Host.UseSerilog((ctx, config) =>
 {
@@ -49,4 +51,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 ApplyMigrations.RegisterMigrations(app, app.Environment, Log.Logger);
+DatabasePreparation.PreparationPopulation(app, Log.Logger);
+
 app.Run();

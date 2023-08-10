@@ -3,6 +3,7 @@ using PlatformService.AsyncDataServices;
 using PlatformService.Data;
 using PlatformService.Dtos;
 using PlatformService.Services;
+using PlatformService.SyncDataServices.Grpc;
 using PlatformService.SyncDataServices.Http;
 using Serilog;
 
@@ -17,6 +18,7 @@ builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
 builder.Services.AddSingleton<IMessageBusClient, MessageBusClient>();
 
 builder.Services.AddDbContext<PlatformDbContest>();
+builder.Services.AddGrpc();
 
 builder.Host.UseSerilog((ctx, config) =>
 {
@@ -47,6 +49,13 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGrpcService<GrpcPlatformService>();
+
+app.MapGet("/protos/platforms.proto", async context =>
+{
+    await context.Response.WriteAsync(File.ReadAllText("/Protos/platforms.proto"));
+});
 
 DatabasePreparation.PrepPolulation(app, app.Environment, Log.Logger);
 
