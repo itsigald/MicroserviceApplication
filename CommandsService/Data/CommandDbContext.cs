@@ -26,7 +26,6 @@ namespace CommandsService.Data
             }
             else
             {
-                _logger.LogInformation("Using DB SqlServer");
                 optionsBuilder.UseSqlServer(_settings.GetSetting?.ConnectionString);
             }
         }

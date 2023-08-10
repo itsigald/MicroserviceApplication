@@ -15,11 +15,14 @@ namespace CommandsService.Data
         private static void seedData(CommandDbContext? context, Serilog.ILogger logger, bool isProduction)
         {
             if (context == null)
-                throw new ArgumentNullException($"The context {nameof(context)} is null");
+            {
+                logger.Information($"--> The context {nameof(context)} is null");
+                throw new ArgumentNullException($"--> The context {nameof(context)} is null");
+            }
 
             if (isProduction)
             {
-                logger.Information($"--------> Apply migration for...");
+                logger.Information($"--> Apply migration for {nameof(context)}");
 
                 try
                 {
@@ -27,13 +30,13 @@ namespace CommandsService.Data
                 }
                 catch (Exception ex)
                 {
-                    logger.Information($"--------> Error on migration: {ex.Message}...");
+                    logger.Information($"--> Error on migration: {ex.Message}");
                     throw;
                 }
             }
             else
             {
-                logger.Information("--------> We already have data");
+                logger.Information("--> We already have data");
             }
 
         }

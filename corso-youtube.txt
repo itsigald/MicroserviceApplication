@@ -34,3 +34,4 @@ https://youtu.be/DgVjEo3OGBI?t=34651 Test finale con RabbitMQ
 https://youtu.be/DgVjEo3OGBI?t=34765 GRCP start
 https://youtu.be/DgVjEo3OGBI?t=37433 grpc client on commands
 https://youtu.be/DgVjEo3OGBI?t=38875 fine client on commands
+https://youtu.be/DgVjEo3OGBI?t=39532 movime gforward
